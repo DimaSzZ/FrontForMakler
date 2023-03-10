@@ -1,0 +1,40 @@
+<div>
+  <header class="bg-gray-700 p-2.5 mt-8 col-span-2 ">
+    <h1 class="text-2xl text-gray-200">Админка</h1>
+  </header>
+  <div class="flex h-full">
+    <nav class="bg-gray-500 overflow-y-auto p-3 h-screen h-[83vh] w-1/4  ">
+      <div class="py-3 text-gray-200 cursor-pointer hover:brightness-150">HOME</div>
+      <div class="py-3 text-gray-200 relative inline-block ">
+        <p id="1"   (click)="isShowing($event)" class="cursor-pointer hover:brightness-150">CRUD-AD</p>
+        <ul id="1target" class="hidden">
+          <li  [routerLink]="['crud-ad','create']" class="py-1  cursor-pointer hover:brightness-150 ">Create</li>
+          <li  [routerLink]="['crud-ad','update']" class=" py-1 cursor-pointer hover:brightness-150">Update</li>
+          <li  [routerLink]="['crud-ad','delete']" class=" py-1 cursor-pointer hover:brightness-150">Delete</li>
+        </ul>
+      </div>
+      <div class="py-3 text-gray-200 cursor-pointer hover:brightness-150">
+        <p id="2" (click)="isShowing($event)" class="cursor-pointer hover:brightness-150">CRUD-CATEGORY-SUBCATEGORY</p>
+        <ul id="2target" class="hidden">
+          <li [routerLink]="['crud-cat','create']" class="py-1 cursor-pointer hover:brightness-150 ">Create</li>
+          <li [routerLink]="['crud-cat','update']" class=" py-1 cursor-pointer hover:brightness-150">Update</li>
+          <li [routerLink]="['crud-cat','delete']" class=" py-1 cursor-pointer hover:brightness-150">Delete</li>
+        </ul>
+      </div>
+      <div class="py-3 text-gray-200 cursor-pointer hover:brightness-150">
+        <p id="3" (click)="isShowing($event)" class="cursor-pointer hover:brightness-150">CRUD-CITY</p>
+        <ul id="3target" class="hidden">
+          <li [routerLink]="['crud-city','create']" class="py-1 cursor-pointer hover:brightness-150 ">Create</li>
+          <li [routerLink]="['crud-city','update']" class=" py-1 cursor-pointer hover:brightness-150">Update</li>
+          <li [routerLink]="['crud-city','delete']" class=" py-1 cursor-pointer hover:brightness-150">Delete</li>
+        </ul>
+      </div>
+    </nav>
+    <div class="bg-gray-300  auto-cols-auto w-10/12">
+      <form class="p-5 flex  justify-center auto-cols-auto">
+        <router-outlet></router-outlet>
+      </form>
+    </div>
+  </div>
+</div>
+

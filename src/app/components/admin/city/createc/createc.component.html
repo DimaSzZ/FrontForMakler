@@ -1,0 +1,30 @@
+<div class=" rounded bg-gray-100 divide-y-4 divide-red-500 w-[800px] h-[500px]">
+  <div>
+    <h1 class="text-center p-2">Добавление города</h1>
+  </div>
+  <div class="w-full h-screen justify-center flex">
+    <div class="h-[450px] w-[400px] ml-5 mt-5">
+      <div class="mb-6">
+        <app-input [placeholderValue]="'Введите город'" [(value)]="cityName" id="inputId"></app-input>
+      </div>
+      <div>
+        <app-button [value]="'Добавить'" (click)="addCity()"></app-button>
+      </div>
+    </div>
+    <div class="h-[450px] w-[400px] justify-center flex mt-5">
+      <ag-grid-angular
+        id="gridId"
+        style="width: 350px; height: 350px;"
+        class="ag-theme-alpine"
+        [columnDefs]="columnDefs"
+        [defaultColDef]="defaultColDef"
+        [rowData]="rowData$ | async"
+        [rowSelection]="'multiple'"
+        [animateRows]="true"
+        (gridReady)="onGridReady($event)"
+        (cellClicked)="onCellClicked($event)"
+      >
+      </ag-grid-angular>
+    </div>
+  </div>
+</div>

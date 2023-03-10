@@ -1,0 +1,105 @@
+<nav class="flex justify-between p-2 bg-gray-500 text-white">
+  <div class="ml-48">
+    <a class="float-left mx-1 cursor-pointer hover:brightness-150"><img src="assets/pages/logo.png" [routerLink]="['/']"
+                                                                        alt="GYDRA.MD width" width="35"/></a>
+    <a class="flex float-left mx-16 cursor-pointer hover:brightness-150"><img src="assets/pages/phone.png" width="25"/>(+373
+      533) 63-136</a>
+    <div class="flex justify-center">
+      <div class=" xl:w-96">
+        <div class="relative flex flex-wrap items-stretch w-full ">
+          <input type="search"
+                 class="form-control h-10 relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                 placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
+        </div>
+      </div>
+      <button
+        class="btn inline-block h-10 px-5 py-2 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex items-center"
+        type="button" id="button-addon2">
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="w-4" role="img"
+             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+          <path fill="currentColor"
+                d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div class="mr-48">
+    <a class="float-right mx-1 cursor-pointer hover:brightness-150"><img src="assets/pages/cart.png" width="35"/></a>
+    <a class="float-right mx-10 cursor-pointer hover:brightness-150"><img src="assets/pages/person.png"
+                                                                          [routerLink]="['/register']" width="35"/></a>
+    <a class="float-right mx-3 cursor-pointer hover:brightness-150"><img src="assets/pages/management.png"
+                                                                         [routerLink]="['/admin']" width="35"/></a>
+  </div>
+</nav>
+<div class="mx-52">
+  <router-outlet></router-outlet>
+  <div class=" rounded bg-gray-100 divide-y-4 divide-red-500 w-[800px] h-[1000px]">
+    <div>
+      <h1 class="text-center p-2">Добавление Объявления</h1>
+    </div>
+    <div class="w-full h-screen">
+      <div class="justify-center flex">
+        <div class="h-[400px] w-[400px] justify-center flex mt-5">
+          <ag-grid-angular
+            id="gridId"
+            style="width: 350px; height: 350px;"
+            class="ag-theme-alpine"
+            [columnDefs]="columnCategoryDefs"
+            [defaultColDef]="defaultColDef"
+            [rowData]="rowData$ | async"
+            [rowSelection]="'multiple'"
+            [animateRows]="true"
+            (gridReady)="onCategoryGridReady($event)"
+            (rowClicked)="onCategoryRowCatClicked($event)"
+          >
+          </ag-grid-angular>
+        </div>
+        <div class="h-[400px]  w-[400px] justify-center flex mt-5">
+          <ag-grid-angular
+            id="gridId2"
+            style="width: 350px; height: 350px;"
+            class="ag-theme-alpine"
+            [columnDefs]="columnSubCategoryDefs"
+            [defaultColDef]="defaultColDef"
+            [rowData]="rowData2$ | async"
+            [rowSelection]="'multiple'"
+            [animateRows]="true"
+            (rowClicked)="onSubCategoryRowCatClicked($event)"
+          >
+          </ag-grid-angular>
+        </div>
+      </div>
+      <div class="mx-5 ">
+        <mat-form-field  appearance="fill">
+          <mat-label>Города</mat-label>
+          <mat-select [(ngModel)]="selectedCity" >
+            <mat-option *ngFor="let city of cities" [value]="city.Id">
+              {{city.CityName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="m-5">
+        <app-input [placeholderValue]="'Введите заголовок'" [(value)]="heading"></app-input>
+      </div>
+      <div class="m-5">
+        <mat-form-field  class="w-[633px]">
+          <mat-label >Описание</mat-label>
+          <textarea  matInput [(ngModel)]="description"></textarea>
+        </mat-form-field>
+      </div>
+      <div class="m-5">
+        <input type="file" (change)="onFileSelected($event)">
+      </div>
+      <div class="m-5">
+        <app-input [placeholderValue]="'Введите телефон'" [(value)]="number"></app-input>
+      </div>
+      <div class="m-5">
+        <app-input  [placeholderValue]="'Введите цену'" [(value)]="price"></app-input>
+      </div>
+      <div>
+        <app-button (click)="AddAd()" value="Добавить"></app-button>
+      </div>
+    </div>
+  </div>
+</div>

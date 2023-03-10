@@ -1,0 +1,24 @@
+<form [formGroup]="form" *ngIf="isShowing" class="bg-gray-200">
+  <div class="h-screen w-full  fixed left-0 top-0 flex justify-center items-stretch pt-8 bg-black bg-opacity-50">
+    <div class="bg-white h-2/5 rounded  w-1/4">
+      <div class="border-b px-4 py-2 flex items-stretch">
+        <a class="mx-12 italic cursor-pointer hover:text-red-800"><h3>Авторизация </h3></a>
+        <a class="ml-14 italic cursor-pointer hover:text-red-800" routerLink="/register" ><h3>Регистрация</h3></a>
+        <a class=><img class="w-6 h-6 ml-8 cursor-pointer hover:brightness-50" (click)="isShowing = false" routerLink="" src="../../../../../assets/pages/close.png"/></a>
+      </div>
+      <div class="p-3 text-center">
+        <a class="text-sm">Войти как пользователь</a>
+        <input formControlName="Email" class="my-4  h-10 relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="E-Mail" aria-label="Search">
+        <input formControlName="Password" class="my-4  h-10 relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Пароль" aria-label="Search">
+        <div class="items-stretch">
+          <input class="mr-3" type="checkbox" id="scalesNum1" name="scalesNum1" checked>
+          <label class="text-xs" for="scalesNum1">Запомнить меня</label>
+        </div>
+      </div>
+      <div class="flex justify-end items-center w-100 border-t p-3">
+        <button type="submit" [disabled]="form.invalid" (click)="onSubmit()" class="bg-yellow-400 hover:bg-yellow-500 px-3 py-1 rounded text-white">Авторизация</button>
+      </div>
+    </div>
+  </div>
+</form>
+<router-outlet></router-outlet>
