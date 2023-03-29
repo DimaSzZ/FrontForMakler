@@ -35,10 +35,10 @@
       </div>
     </div>
     <div class="mb-6 ml-5">
-      <app-input [(value)]="CategoryProduct" [placeholderValue]="'Введите Категория'" id="inputId">{{CategoryProduct}}</app-input>
+      <app-input [(value)]="CategoryProduct" [placeholderValue]="'Введите Категорию'" id="inputId">{{CategoryProduct}}</app-input>
     </div>
     <div class="mb-6 ml-5">
-      <app-input [(value)]="SubCategoryProduct" id="inputId2">{{'Введите Подкатегорию'}}</app-input>
+      <app-input [(value)]="SubCategoryProduct" [placeholderValue]="'Введите ПодКатегорию'" id="inputId2"></app-input>
     </div>
     <div class="ml-2.5">
       <app-button (click)="addCategoryOrSubCategory()" [value]="'Добавить'"></app-button>

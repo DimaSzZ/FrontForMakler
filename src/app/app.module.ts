@@ -27,6 +27,9 @@ import {InputComponent} from "./components/UI/input/input.component";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import {MatInputModule} from "@angular/material/input";
+import { SidepanelComponent } from './components/sidepanel/sidepanel.component';
+import { SmallunitComponent } from './components/smallunit/smallunit.component';
+import { BigunitComponent } from './components/bigunit/bigunit.component';
 
 
 @NgModule({
@@ -46,7 +49,10 @@ import {MatInputModule} from "@angular/material/input";
     UpdatecComponent,
     CreateComponent,
     DeleteComponent,
-    UpdateComponent
+    UpdateComponent,
+    SidepanelComponent,
+    SmallunitComponent,
+    BigunitComponent
   ],
   imports: [
     BrowserModule,

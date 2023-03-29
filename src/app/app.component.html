@@ -31,75 +31,26 @@
                                                                          [routerLink]="['/admin']" width="35"/></a>
   </div>
 </nav>
-<div class="mx-52">
-  <router-outlet></router-outlet>
-  <div class=" rounded bg-gray-100 divide-y-4 divide-red-500 w-[800px] h-[1000px]">
-    <div>
-      <h1 class="text-center p-2">Добавление Объявления</h1>
+<div class="mx-52 mt-6">
+  <div *ngIf="!router.url.startsWith('/admin')" class="flex">
+    <div class="w-1/5 bg-gray-200 h-fit p-3">
+      <div *ngFor="let cat of categories" class="flex">
+        <div (click)="toggleSubcategories(cat.Id)" class="cursor-pointer bg-red-300 rounded p-1 mt-3">
+          {{cat.CategoryProduct}}
+        </div>
+        <div *ngIf="showSubcategories[cat.Id]" class="ml-5 bg-blue-400 p-1 rounded">
+          <div *ngFor="let subcat of subcategoriesByCategory[cat.Id]">
+            <h1>{{subcat.SubCategoryProduct}}</h1>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="w-full h-screen">
-      <div class="justify-center flex">
-        <div class="h-[400px] w-[400px] justify-center flex mt-5">
-          <ag-grid-angular
-            id="gridId"
-            style="width: 350px; height: 350px;"
-            class="ag-theme-alpine"
-            [columnDefs]="columnCategoryDefs"
-            [defaultColDef]="defaultColDef"
-            [rowData]="rowData$ | async"
-            [rowSelection]="'multiple'"
-            [animateRows]="true"
-            (gridReady)="onCategoryGridReady($event)"
-            (rowClicked)="onCategoryRowCatClicked($event)"
-          >
-          </ag-grid-angular>
-        </div>
-        <div class="h-[400px]  w-[400px] justify-center flex mt-5">
-          <ag-grid-angular
-            id="gridId2"
-            style="width: 350px; height: 350px;"
-            class="ag-theme-alpine"
-            [columnDefs]="columnSubCategoryDefs"
-            [defaultColDef]="defaultColDef"
-            [rowData]="rowData2$ | async"
-            [rowSelection]="'multiple'"
-            [animateRows]="true"
-            (rowClicked)="onSubCategoryRowCatClicked($event)"
-          >
-          </ag-grid-angular>
-        </div>
-      </div>
-      <div class="mx-5 ">
-        <mat-form-field  appearance="fill">
-          <mat-label>Города</mat-label>
-          <mat-select [(ngModel)]="selectedCity" >
-            <mat-option *ngFor="let city of cities" [value]="city.Id">
-              {{city.CityName}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div class="m-5">
-        <app-input [placeholderValue]="'Введите заголовок'" [(value)]="heading"></app-input>
-      </div>
-      <div class="m-5">
-        <mat-form-field  class="w-[633px]">
-          <mat-label >Описание</mat-label>
-          <textarea  matInput [(ngModel)]="description"></textarea>
-        </mat-form-field>
-      </div>
-      <div class="m-5">
-        <input type="file" (change)="onFileSelected($event)">
-      </div>
-      <div class="m-5">
-        <app-input [placeholderValue]="'Введите телефон'" [(value)]="number"></app-input>
-      </div>
-      <div class="m-5">
-        <app-input  [placeholderValue]="'Введите цену'" [(value)]="price"></app-input>
-      </div>
-      <div>
-        <app-button (click)="AddAd()" value="Добавить"></app-button>
-      </div>
+    <div class="w-4/5 ml-7">
+      <h1>1</h1>
     </div>
   </div>
+  <router-outlet></router-outlet>
 </div>
+
+
+
