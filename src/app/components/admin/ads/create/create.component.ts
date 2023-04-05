@@ -101,13 +101,16 @@ export class CreateComponent implements OnInit{
     const formData = new FormData();
     formData.append('City', this.selectedCity.CityName);
     formData.append('Heading', this.heading);
-    formData.append('Description', this.description || '');
-    formData.append('File', this.file, this.file.name);
     formData.append('Phone', this.number);
     formData.append('Price', this.price.toString());
     formData.append('CategoryId', this.selectedCatRowData?.Id || '');
-    formData.append('SubCategoryId', this.selectedSubCatRowData?.Id || '');
     formData.append('CityId', this.selectedCity.Id);
+    if(this.description != undefined)
+      formData.append('Description', this.description || '');
+    if(this.file != undefined)
+      formData.append('File', this.file, this.file.name);
+    if(this.selectedSubCatRowData?.Id != undefined || this.selectedSubCatRowData?.Id != null)
+      formData.append('SubCategoryId', this.selectedSubCatRowData?.Id || '');
     console.log(formData);
 
     this.http.post<any>('https://localhost:7270/api/admin/ads/append', formData).subscribe(

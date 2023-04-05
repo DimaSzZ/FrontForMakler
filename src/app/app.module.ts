@@ -20,7 +20,7 @@ import { UpdatecComponent } from './components/admin/city/updatec/updatec.compon
 import { CreateComponent } from './components/admin/ads/create/create.component';
 import { DeleteComponent } from './components/admin/ads/delete/delete.component';
 import { UpdateComponent } from './components/admin/ads/update/update.component';
-import { RouterModule} from "@angular/router";
+import {RouteReuseStrategy, RouterModule} from "@angular/router";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {InterceptInterceptor} from "./token-interceptor/intercept.interceptor";
 import {InputComponent} from "./components/UI/input/input.component";
@@ -68,10 +68,9 @@ import { BigunitComponent } from './components/bigunit/bigunit.component';
     MatSelectModule,
     MatInputModule
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS, useClass: InterceptInterceptor,
-    multi: true
-  }],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

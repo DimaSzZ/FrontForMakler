@@ -1,1 +1,27 @@
-<p>bigunit works!</p>
+<div *ngIf="ad" >
+  <div class="h-[800px] w-full rounded bg-gray-200 ">
+    <div class="justify-center">
+      <div class="p-5 text-2xl flex">
+        <b><h1 class="mr-5">{{ad.Heading | titlecase}}</h1></b>
+        <h1 class="mr-5">{{ad.Price | currency}}</h1>
+        <h1>{{ad.DateOfCreate | date}}</h1>
+      </div>
+      <div class="h-[280px] w-[350px]  bg-gray-200 rounded p-5">
+        <img [src]="selectPicture()" id="pict" class="w-[100%] h-[100%]">
+      </div>
+      <div>
+        <form class="ml-5">
+          <label>
+            <span class="text-gray-700">Description:</span>
+            <textarea
+              class="resize-vertical mt-5 block w-[400px] text-2xl mt-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+              readonly>{{ad.Description | titlecase}}</textarea>
+          </label>
+        </form>
+      </div>
+      <div class="ml-5 mt-5">
+        <h1 class="text-2xl">{{ad.Phone}}</h1>
+      </div>
+    </div>
+  </div>
+</div>

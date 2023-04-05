@@ -2,17 +2,27 @@
   <div class="ml-48">
     <a class="float-left mx-1 cursor-pointer hover:brightness-150"><img src="assets/pages/logo.png" [routerLink]="['/']"
                                                                         alt="GYDRA.MD width" width="35"/></a>
-    <a class="flex float-left mx-16 cursor-pointer hover:brightness-150"><img src="assets/pages/phone.png" width="25"/>(+373
-      533) 63-136</a>
+    <a class="flex float-left mx-16 cursor-pointer hover:brightness-150"><div class="mx-5">
+      <form class="w-25 h-15">
+        <mat-form-field appearance="fill">
+          <mat-label>Города</mat-label>
+          <mat-select name="selectedCity" [(ngModel)]="selectedCity">
+            <mat-option *ngFor="let city of cities" [value]="city">
+              {{city.CityName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
+    </div></a>
     <div class="flex justify-center">
       <div class=" xl:w-96">
         <div class="relative flex flex-wrap items-stretch w-full ">
-          <input type="search"
+          <input [(ngModel)]="heading" type="search"
                  class="form-control h-10 relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                  placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
         </div>
       </div>
-      <button
+      <button (click)="SearchBut()"
         class="btn inline-block h-10 px-5 py-2 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex items-center"
         type="button" id="button-addon2">
         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="w-4" role="img"
@@ -32,21 +42,32 @@
   </div>
 </nav>
 <div class="mx-52 mt-6">
-  <div *ngIf="!router.url.startsWith('/admin')" class="flex">
-    <div class="w-1/5 bg-gray-200 h-fit p-3">
-      <div *ngFor="let cat of categories" class="flex">
-        <div (click)="toggleSubcategories(cat.Id)" class="cursor-pointer bg-red-300 rounded p-1 mt-3">
-          {{cat.CategoryProduct}}
-        </div>
-        <div *ngIf="showSubcategories[cat.Id]" class="ml-5 bg-blue-400 p-1 rounded">
-          <div *ngFor="let subcat of subcategoriesByCategory[cat.Id]">
-            <h1>{{subcat.SubCategoryProduct}}</h1>
+  <ng-container *ngIf="showBigUnit">
+  </ng-container>
+  <div *ngIf="!showBigUnit">
+    <div *ngIf="!router.url.startsWith('/admin') || !router.url.startsWith('/big-unit')" class="flex">
+      <div class="w-1/5 h-fit p-3 rounded bg-gray-300 w-[200px] mr-[100px]">
+        <div *ngFor="let cat of categories" class="flex h-[40px] relative">
+          <div (click)="toggleSubcategories(cat.Id)" class="cursor-pointer rounded p-1 mt-3">
+            {{cat.CategoryProduct}}
+          </div>
+          <div *ngIf="showSubcategories[cat.Id]"  class="ml-5 mt-2 p-1 rounded absolute right-[-120px] bg-gray-200 p-3">
+            <h1 (click)="AddCatSub(cat.Id)"  class="cursor-pointer text-red-900 mt-1">{{cat.CategoryProduct}}</h1>
+            <div *ngFor="let subcat of subcategoriesByCategory[cat.Id]">
+              <h1 (click)="AddCatSub(cat.Id,subcat.Id)" class="cursor-pointer mt-1">{{subcat.SubCategoryProduct}}</h1>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="w-4/5 ml-7">
-      <h1>1</h1>
+      <div class="grid grid-cols-4 gap-4 ml-5">
+        <ng-container class="rounded" *ngFor="let ad of Ads;">
+          <div class="col">
+            <a class="cursor-pointer" (click)="showBigUnit = true; navigateToBigUnit(ad.Id)">
+              <app-smallunit [data]="ad"></app-smallunit>
+            </a>
+          </div>
+        </ng-container>
+      </div>
     </div>
   </div>
   <router-outlet></router-outlet>

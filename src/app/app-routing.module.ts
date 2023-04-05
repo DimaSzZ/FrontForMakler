@@ -14,10 +14,12 @@ import {DeleteComponent} from "./components/admin/ads/delete/delete.component";
 import {CreatecComponent} from "./components/admin/city/createc/createc.component";
 import {UpdatecComponent} from "./components/admin/city/updatec/updatec.component";
 import {DeletecComponent} from "./components/admin/city/deletec/deletec.component";
+import {BigunitComponent} from "./components/bigunit/bigunit.component";
 
 const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'big-unit/:Id', component:BigunitComponent},
   {
     path: 'admin',
     canActivate: [AuthGuard],

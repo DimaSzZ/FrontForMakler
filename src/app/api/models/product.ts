@@ -1,11 +1,10 @@
 export interface Advertising {
-  city:string;
-  cityId:string
-  Heading:string;
-  Description:string;
-  phone:string;
-  price:number;
-  file?:File
-  categoryId?:string;
-  subCategoryId?:string;
+  Id:string,
+  UserId:string,
+  Heading?:string,
+  Description?:string,
+  Picture:string,
+  Phone:string,
+  Price:number,
+  DateOfCreate:Date
 }
